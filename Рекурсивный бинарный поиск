@@ -1,0 +1,53 @@
+def recursive_binary_search(elements_list, left, right, x):
+    if left > right:
+        return -1
+
+    if left == right:
+        if elements_list[left] == x:
+            return left
+        else:
+            return -1
+
+    middle = (left + right) // 2
+
+    if elements_list[middle] == x:
+        return middle
+    elif x > elements_list[middle]:
+        return recursive_binary_search(elements_list, middle + 1, right, x)
+    else:
+        return recursive_binary_search(elements_list, left, middle - 1, x)
+
+
+def binary_search(elements_list, x):
+    left = 0
+    right = len(elements_list) - 1
+
+    while left <= right:
+        if left == right:
+            if elements_list[left] == x:
+                return left
+            else:
+                return -1
+
+        middle = (left + right) // 2
+
+        if elements_list[middle] == x:
+            return middle
+
+        if x > elements_list[middle]:
+            left = middle + 1
+
+        if x < elements_list[middle]:
+            right = middle - 1
+
+    return -1
+
+user_list = [3, 6, 5, 9, 10, 12]
+
+print(recursive_binary_search(user_list, 0, len(user_list) - 1, 10))
+print()
+print(recursive_binary_search(user_list, 0, len(user_list) - 1, 12))
+print()
+print(binary_search(user_list, 5))
+print()
+print(binary_search(user_list, 0))
